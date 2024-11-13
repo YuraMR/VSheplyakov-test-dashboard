@@ -26,10 +26,10 @@ const CompanyWidget: React.FC<CompanyWidgetProps> = ({ selectedCompany }) => {
           {Object.entries(selectedCompany).map(([key, value]) =>
             typeof value === "boolean" || !value ? null : (
               <tr key={key}>
-                <td className=" p-2 whitespace-nowrap align-text-top font-semibold">
+                <td className="p-2 whitespace-nowrap align-text-top font-semibold">
                   {formatKey(key)}
                 </td>
-                <td className=" p-2">{value}</td>
+                <td className="p-2">{value}</td>
               </tr>
             )
           )}

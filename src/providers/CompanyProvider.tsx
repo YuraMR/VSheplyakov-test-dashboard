@@ -1,8 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import companies from "../data/companies-lookup.json";
-import { Company } from "../utils/types/types";
-
-export type ViewId = "a" | "b" | "c";
+import { Company, ViewId } from "../utils/types/types";
 
 interface CompanyProviderProps {
   children: React.ReactNode;
@@ -14,33 +12,31 @@ interface CompanyContextProps {
   setSelectedCompany: (id: ViewId, companyName: string) => void;
 }
 
-const CompanyContext = createContext<CompanyContextProps | null>(
-  null
-);
+const CompanyContext = createContext<CompanyContextProps | null>(null);
 
 export const CompanyProvider: React.FC<CompanyProviderProps> = ({
-  children,
+  children
 }) => {
   const [selectedCompanies, setSelectedCompanies] = useState<
     Record<ViewId, string | null>
   >({
     a: null,
     b: null,
-    c: null,
+    c: null
   });
 
   const [companyData, setCompanyData] = useState<Company[]>([]);
 
   useEffect(() => {
     const fetchCompanies = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 100));
+      await new Promise(resolve => setTimeout(resolve, 100));
       setCompanyData(companies);
     };
     fetchCompanies();
   }, []);
 
   const setSelectedCompany = (id: ViewId, companyName: string) => {
-    setSelectedCompanies((prev) => ({ ...prev, [id]: companyName }));
+    setSelectedCompanies(prev => ({ ...prev, [id]: companyName }));
   };
 
   return (
