@@ -40,3 +40,5 @@ export type Company = {
   legacy_industry_category: string | null;
   legacy_industry_group: string | null;
 };
+
+export type ViewId = "a" | "b" | "c";
